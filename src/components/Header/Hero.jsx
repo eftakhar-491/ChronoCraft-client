@@ -6,8 +6,11 @@ import "swiper/css/navigation";
 import h1 from "../../assets/1.png";
 import h2 from "../../assets/2.jpg";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { use } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Hero() {
+  const navigate = useNavigate();
   return (
     <>
       <section className="relative z-20">
@@ -24,9 +27,9 @@ export default function Hero() {
             className="mySwiper"
           >
             <SwiperSlide className=" ">
-              <div className="h-[600px] justify-between flex gap-4 items-center lg:w-4/5 mx-auto w-11/12 ">
-                <div className="w-[51%] text-white">
-                  <h1 className="text-5xl font-Cinzel">
+              <div className="h-[600px] justify-between flex-col lg:flex-row flex gap-4 items-center lg:w-4/5 mx-auto w-11/12 ">
+                <div className=" lg:w-[51%] text-white">
+                  <h1 className="text-3xl lg:text-5xl font-Cinzel">
                     Timeless Treasures That Tell Their Story
                   </h1>
                   <p className="text-sm font-Roboto mt-3">
@@ -34,7 +37,10 @@ export default function Hero() {
                     ancient artifacts and historical marvels. Discover the
                     stories behind timeless treasures that shaped human history.
                   </p>
-                  <button className="active:scale-95 hover:bg-[#153438] flex items-center gap-2 text-lg mt-5 border-2 px-6 py-1 rounded-xl">
+                  <button
+                    onClick={() => navigate("/artifacts")}
+                    className="active:scale-95 hover:bg-[#153438] flex items-center gap-2 text-lg mt-5 border-2 px-6 py-1 rounded-xl"
+                  >
                     Explore All Artifacts{" "}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -52,14 +58,14 @@ export default function Hero() {
                     </svg>
                   </button>
                 </div>
-                <div className="relative flex w-[45%]">
+                <div className=" lg:relative lg:flex w-11/12 lg:w-[45%]">
                   <img
-                    className="rounded-xl shadow-2xl scale-75"
+                    className=" rounded-xl shadow-2xl lg:scale-75"
                     src={h1}
                     alt=""
                   />
                   <img
-                    className=" absolute bottom-0 -right-10 w-[300px] h-[300px] shadow-2xl rounded-2xl"
+                    className="hidden lg:block absolute bottom-0 -right-10 w-[300px] h-[300px] shadow-2xl rounded-2xl"
                     src={h2}
                     alt=""
                   />

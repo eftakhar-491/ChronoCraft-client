@@ -21,10 +21,10 @@ html {
   margin-block: 0.5em;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0e3f30;
+  background: #0e2f30;
 }
 ::-webkit-scrollbar-track {
-  background-color: #0e2c3061;
+  background-color: #0e2f3061;
 }
 .image-grid {
   padding: 12px;
