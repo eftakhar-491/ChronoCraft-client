@@ -5,7 +5,7 @@ import Lottie from "lottie-react";
 export default function Nav() {
   return (
     <>
-      <nav className="font-Cinzel">
+      <nav className="font-Cinzel text-white">
         <div className="w-4/5 mx-auto flex justify-between items-center py-4">
           <h1 className="font-bold text-lg lg:text-2xl">
             Chrono
@@ -23,7 +23,7 @@ export default function Nav() {
             <NavLink
               to="/artifacts"
               className={({ isActive }) =>
-                isActive ? "underline font-extrabold" : "text-gray-700"
+                isActive ? "underline font-extrabold" : "text-gray-400"
               }
             >
               <li>All Artifacts</li>
@@ -31,7 +31,7 @@ export default function Nav() {
             <NavLink
               to="/add-artifact"
               className={({ isActive }) =>
-                isActive ? "underline font-extrabold" : "text-gray-500"
+                isActive ? "underline font-extrabold" : "text-gray-400"
               }
             >
               <li>Add Artifact</li>
@@ -44,16 +44,16 @@ export default function Nav() {
               </button>
             </Link>
             <div className="relative w-10 h-10 rounded-full">
-              <div className="w-full h-full">
+              <div className="hover:border-2 active:scale-95 cursor-pointer w-full h-full bg-white rounded-full flex items-center justify-center">
                 <Lottie animationData={profile} loop={true} />
               </div>
               {/* <img src="" alt="" /> */}
-              <div className="absolute top-10 right-0 w-44 bg-white shadow-md rounded-lg p-3 ">
+              <div className="absolute top-10 right-0 w-44 text-white shadow-md rounded-lg p-3 border-2 border-gray-200 ">
                 <ul className="flex flex-col space-y-2">
                   <NavLink
                     to="/my-artifacts"
                     className={({ isActive }) =>
-                      isActive ? "underline font-extrabold" : "text-gray-900"
+                      isActive ? "underline font-extrabold" : ""
                     }
                   >
                     <li className=" flex-shrink-0">My Artifacts</li>
@@ -61,10 +61,10 @@ export default function Nav() {
                   <NavLink
                     to="/my-artifacts"
                     className={({ isActive }) =>
-                      isActive ? "underline font-extrabold" : "text-gray-900"
+                      isActive ? "underline font-extrabold" : ""
                     }
                   >
-                    <li className=" flex-shrink-0">My Artifacts</li>
+                    <li className=" flex-shrink-0">Liked Artifacts</li>
                   </NavLink>
                   <button className="font-semibold border-2 px-3 py-1 rounded-lg ">
                     Logout
