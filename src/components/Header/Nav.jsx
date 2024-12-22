@@ -95,7 +95,7 @@ export default function Nav() {
                     <li className=" flex-shrink-0">My Artifacts</li>
                   </NavLink>
                   <NavLink
-                    to="/my-artifacts"
+                    to="/liked-artifacts"
                     className={({ isActive }) =>
                       isActive ? "underline font-extrabold" : ""
                     }

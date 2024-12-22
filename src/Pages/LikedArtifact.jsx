@@ -4,7 +4,7 @@ import bg from "../assets/bg.png";
 import Lottie from "lottie-react";
 import Nav from "../components/Header/Nav";
 
-export default function AllArtifacts() {
+export default function LikedArtifact() {
   return (
     <>
       <section
@@ -14,7 +14,7 @@ export default function AllArtifacts() {
         <div className=" w-[600px] mx-auto absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <Lottie animationData={world} loop={true}></Lottie>
         </div>
-        <div className="fixed overflow-y-auto w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
+        <div className="fixed overflow-y-scroll w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
           <Nav />
 
           <section className=" top-0">
