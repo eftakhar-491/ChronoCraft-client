@@ -1,10 +1,19 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import profile from "../../assets/lottie/profile.json";
 import Lottie from "lottie-react";
+import { AuthContext } from "../../Firebase/AuthProvider";
 export default function Nav() {
   const [pro, setPro] = useState(false);
   const [menu, setMenu] = useState(false);
+  const { user, logOut, setLoading } = useContext(AuthContext);
+  const navigate = useNavigate();
+  function handelLogout() {
+    logOut()
+      .then(() => console.log("Logged Out"))
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
+  }
   return (
     <>
       <nav className="font-Cinzel text-white">
@@ -62,24 +71,36 @@ export default function Nav() {
             </NavLink>
           </ul>
           <div className="flex items-center gap-3">
-            <Link to="/login">
-              <button className="font-semibold border-2 px-3 py-1 rounded-lg ">
-                Login
-              </button>
-            </Link>
-            <Link to="/login">
-              <button className="font-semibold border-2 px-3 py-1 rounded-lg ">
+            {user ? (
+              <button
+                onClick={handelLogout}
+                className="hidden md:block font-semibold border-2 px-3 py-1 rounded-lg "
+              >
                 Logout
               </button>
-            </Link>
+            ) : (
+              <Link className="hidden md:block" to="/login">
+                <button className="font-semibold border-2 px-3 py-1 rounded-lg ">
+                  Login
+                </button>
+              </Link>
+            )}
+
             <div className="relative w-10 h-10 rounded-full">
               <div
                 onClick={() => setPro((p) => !p)}
                 className="border-2 active:scale-95 cursor-pointer w-full h-full bg-white rounded-full flex items-center justify-center"
               >
-                <Lottie animationData={profile} loop={true} />
+                {user ? (
+                  <img
+                    className="w-full h-full rounded-full"
+                    src={user?.photoURL}
+                    alt=""
+                  />
+                ) : (
+                  <Lottie animationData={profile} loop={true} />
+                )}
               </div>
-              {/* <img src="" alt="" /> */}
               <div
                 className={`${
                   pro ? "block" : "hidden"
@@ -102,12 +123,21 @@ export default function Nav() {
                   >
                     <li className=" flex-shrink-0">Liked Artifacts</li>
                   </NavLink>
-                  <button className="font-semibold border-2 px-3 py-1 rounded-lg ">
-                    LogIn
-                  </button>
-                  <button className="font-semibold border-2 px-3 py-1 rounded-lg ">
-                    Logout
-                  </button>
+                  {user ? (
+                    <button
+                      onClick={handelLogout}
+                      className="md:hidden font-semibold border-2 px-3 py-1 rounded-lg "
+                    >
+                      Logout
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => navigate("/login")}
+                      className="md:hidden font-semibold border-2 px-3 py-1 rounded-lg "
+                    >
+                      LogIn
+                    </button>
+                  )}
                 </ul>
               </div>
             </div>

@@ -11,6 +11,7 @@ import AddArtifact from "./Pages/AddArtifact.jsx";
 import MyArtifacts from "./Pages/MyArtifacts.jsx";
 import LikedArtifact from "./Pages/LikedArtifact.jsx";
 import ArtifactDetails from "./Pages/ArtifactDetails.jsx";
+import AuthProtect from "./components/ProtectedRoute/AuthProtect.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,11 +43,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <LogIn />,
+        element: (
+          <AuthProtect>
+            <LogIn />,
+          </AuthProtect>
+        ),
       },
       {
         path: "/register",
-        element: <Register />,
+        element: (
+          <AuthProtect>
+            <Register />
+          </AuthProtect>
+        ),
       },
     ],
   },

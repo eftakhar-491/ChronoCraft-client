@@ -10,7 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "./Fitebase.init";
-
+import axios from "axios";
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
@@ -51,14 +51,18 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      //   if (currentUser) {
-      //     axios.post(
-      //       "http://localhost:9000/jwt",
-      //       { email: currentUser.email },
-      //       { withCredentials: true }
-      //     );
-      //   } else {
-      //   }
+      if (currentUser) {
+        axios.post(
+          `${import.meta.env.VITE_APIURL}/jwt`,
+          { email: currentUser?.email },
+          { withCredentials: true }
+        );
+      } else {
+        // logOut()
+        //   .then(() => console.log("Logged Out"))
+        //   .catch((err) => console.log(err))
+        //   .finally(() => setLoading(false));
+      }
       console.log("CurrentUser-->", currentUser);
       setLoading(false);
     });
