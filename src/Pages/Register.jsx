@@ -5,7 +5,7 @@ import Lottie from "lottie-react";
 import Nav from "../components/Header/Nav";
 import goo from "../assets/google.png";
 import { useNavigate } from "react-router-dom";
-export default function LogIn() {
+export default function Register() {
   const navigate = useNavigate();
   return (
     <>
@@ -18,9 +18,43 @@ export default function LogIn() {
         </div>
         <div className="fixed  w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
           <Nav />
-          <form className="shadow-2xl mt-14 border-2 p-4 rounded-lg w-11/12 md:max-w-md mx-auto text-white">
-            <label className="text-2xl font-Roboto font-bold">Log In </label>
-            <div className="relative z-0 w-full mb-5 group">
+          <form className="shadow-2xl mt-8 border-2 p-4 rounded-lg w-11/12 md:max-w-md mx-auto text-white">
+            <label className="text-2xl font-Roboto font-bold">
+              Create an account
+            </label>
+            <div className="relative z-0 w-full mt-2 mb-5 group">
+              <input
+                type="text"
+                name="name"
+                id="name"
+                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="name"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Full Name
+              </label>
+            </div>
+            <div className="relative z-0 w-full mt-2 mb-5 group">
+              <input
+                type="text"
+                name="photo"
+                id="photo"
+                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="photo"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Photo URL
+              </label>
+            </div>
+            <div className="relative z-0 w-full mt-2 mb-5 group">
               <input
                 type="email"
                 name="floating_email"
@@ -52,14 +86,12 @@ export default function LogIn() {
                 Password
               </label>
             </div>
-            <p className="text-sm text-right -mt-3 cursor-pointer">
-              Forget Password
-            </p>
+
             <button
               type="submit"
               className="w-full justify-center  active:scale-95 hover:bg-[#153438] flex items-center gap-2 text-lg mt-5 border-2 px-6 py-1 rounded-xl"
             >
-              LogIn{" "}
+              Register Now{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -84,12 +116,12 @@ export default function LogIn() {
               Continue with Google
             </button>
             <p className="mt-4 text-center">
-              --- Don't have an account?{" "}
+              --- Have an account?{" "}
               <span
-                onClick={() => navigate("/register")}
+                onClick={() => navigate("/login")}
                 className="cursor-pointer "
               >
-                Register
+                Login
               </span>{" "}
               ---
             </p>
