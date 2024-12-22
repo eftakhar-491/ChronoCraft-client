@@ -34,7 +34,7 @@ export default function Nav() {
           <ul
             className={`${
               menu ? "block" : "hidden"
-            } backdrop-blur-lg bg-[#101A1Cf5] font-semibold absolute z-50 rounded-lg md:rounded-none md:top-0 top-14 border-2 md:border-0 p-3 md:p-0 md:relative md:flex md:space-x-5 text-sm`}
+            } backdrop-blur-lg bg-[#101A1Cf5] md:bg-transparent font-semibold absolute z-50 rounded-lg md:rounded-none md:top-0 top-14 border-2 md:border-0 p-3 md:p-0 md:relative md:flex md:space-x-5 text-sm`}
           >
             <NavLink
               to="/"
