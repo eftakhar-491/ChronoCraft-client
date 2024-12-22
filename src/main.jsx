@@ -8,6 +8,7 @@ import AllArtifacts from "./Pages/AllArtifacts.jsx";
 import LogIn from "./Pages/LogIn.jsx";
 import Register from "./Pages/Register.jsx";
 import AddArtifact from "./Pages/AddArtifact.jsx";
+import MyArtifacts from "./Pages/MyArtifacts.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/add-artifact",
         element: <AddArtifact />,
+      },
+      {
+        path: "/my-artifacts",
+        element: <MyArtifacts />,
       },
       {
         path: "/login",
