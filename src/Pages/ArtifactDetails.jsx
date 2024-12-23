@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import world from "../assets/lottie/world.json";
 import bg from "../assets/bg.png";
 import Lottie from "lottie-react";
 import Nav from "../components/Header/Nav";
+import StateContext from "../context/StateContext";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../hooks/useSecureAxios";
+import { AuthContext } from "../Firebase/AuthProvider";
 
 export default function ArtifactDetails() {
+  const { detailsId } = useContext(StateContext);
+  const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
+  console.log(detailsId);
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["artifacts", { id: detailsId }],
+    queryFn: async () =>
+      await axiosSecure.get(
+        `/artifacts/details/${detailsId}?email=${user?.email}`
+      ),
+  });
+  console.log(data, isLoading, isError);
+  if (isLoading) return <h1>Loading...</h1>;
   return (
     <>
       <section
@@ -17,64 +34,70 @@ export default function ArtifactDetails() {
         <div className="fixed overflow-y-auto w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
           <Nav />
           <section>
-            <h1 className="text-2xl font-bold text-gray-200 font-Cinzel text-center mt-6">
+            <h1 className="font-Cinzel text-3xl font-bold text-gray-200  text-center mt-6">
               Artifacts Details
             </h1>
             <div className=" w-11/12 lg:w-4/5 mx-auto mt-4 relative space-y-4 border border-b-0 p-5 rounded-lg">
               <div className="w-full lg:w-3/4 rounded-xl shadow-2xl">
                 <img
                   className="w-full rounded-xl"
-                  src="https://i.natgeofe.com/n/81221cd1-b9e0-455d-8aea-fab946c68678/03-bronze-age-warrior-toolkit.jpg"
+                  src={data?.data?.photo}
                   alt=""
                 />
               </div>
-              <div className=" lg:absolute top-28 lg:py-10 text-white right-6 lg:w-[550px] lg:bg-[#3FAEBB]/10 lg:backdrop-blur-lg bg-opacity-70 p-4 rounded-xl">
+              <div className=" lg:absolute top-28 lg:py-10 text-white right-6 lg:w-[550px] lg:bg-black/40 lg:backdrop-blur-xl bg-opacity-70 p-4 rounded-xl">
                 <p className="font-Roboto mb-4">
                   Artifacts Type:
                   <span className="ml-2 bg-green-700/30 font-Cinzel border border-green-700 px-3 py-[2px] rounded-2xl">
-                    Tools
+                    {data.data.artifactsType}
                   </span>
                 </p>
                 <hr />
                 <h1 className="text-gray-300 mt-4 font-Cinzel text-xl font-bold">
                   Artifacts Name : <br />
                   <span className="text-sm font-Roboto">
-                    Sad asdf sdagds agksd fnk
+                    {data.data.artifactName}
                   </span>
                 </h1>
                 <hr />
                 <p className="text-gray-300 mt-4 font-Cinzel text-xl font-bold">
                   present location : <br />
                   <span className="text-sm font-Roboto">
-                    Sad asdf sdagdsagksdfnk
+                    {data.data.presentLocation}
                   </span>
                 </p>
                 <hr />
                 <p className="text-gray-300 mt-4 font-Cinzel text-xl font-bold">
                   Artifact Context : <br />
                   <span className="text-sm font-Roboto">
-                    Sad asdf sdagdsagksdfnk
+                    {data.data.artifactContext}
                   </span>
                 </p>
                 <hr />
                 <p className="mt-4 text-gray-300 font-Cinzel text-xl flex items-center font-bold">
                   Created At :
-                  <span className="text-sm font-Roboto ml-3 ">122/5/2002</span>
+                  <span className="text-sm font-Roboto ml-3 ">
+                    {data.data.createdAt}
+                  </span>
                 </p>
                 <hr />
                 <p className="mt-4 text-gray-300 font-Cinzel text-xl flex items-center font-bold">
                   Discovered At :
-                  <span className="text-sm font-Roboto ml-3 ">122/5/2002</span>
+                  <span className="text-sm font-Roboto ml-3 ">
+                    {data.data.discoveredAt}
+                  </span>
                 </p>
                 <hr />
                 <p className="mt-4 text-gray-300 font-Cinzel text-xl flex items-center font-bold">
                   Discovered By : <br />
-                  <span className="text-sm font-Roboto ml-3 ">asdfsad2</span>
+                  <span className="text-sm font-Roboto ml-3 ">
+                    {data.data.discoveredBy}
+                  </span>
                 </p>
                 <hr />
 
                 <div className="mt-4 flex gap-2 font-Cinzel">
-                  Liked_{" "}
+                  {data.data.like} Liked_
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

@@ -12,6 +12,7 @@ import MyArtifacts from "./Pages/MyArtifacts.jsx";
 import LikedArtifact from "./Pages/LikedArtifact.jsx";
 import ArtifactDetails from "./Pages/ArtifactDetails.jsx";
 import AuthProtect from "./components/ProtectedRoute/AuthProtect.jsx";
+import ComProtect from "./components/ProtectedRoute/ComProtect.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,7 +32,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/my-artifacts",
-        element: <MyArtifacts />,
+        element: (
+          <ComProtect>
+            <MyArtifacts />
+          </ComProtect>
+        ),
       },
       {
         path: "/liked-artifacts",
