@@ -4,16 +4,19 @@ import bg from "../assets/bg.png";
 import Lottie from "lottie-react";
 import Nav from "../components/Header/Nav";
 
-import { data, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useSecureAxios";
-import axios from "axios";
+
+import UptateArtifactModal from "../components/Modal/UptateArtifactModal";
+import DeleteModal from "../components/Modal/DeleteModal";
 export default function MyArtifacts() {
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
-
+  const [modal, setModal] = useState({ isOpen: false, data: {} });
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false, data: {} });
   console.log(user);
 
   const { data, isLoading, isError } = useQuery({
@@ -80,11 +83,21 @@ export default function MyArtifacts() {
                         <td className="px-6 py-4">{item.presentLocation}</td>
                         <td className="px-6 py-4">${item.like}</td>
                         <td className="px-6 py-4">
-                          <span className="cursor-pointer mr-2 font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                          <span
+                            onClick={() => {
+                              setModal({ isOpen: true, data: item });
+                            }}
+                            className="cursor-pointer mr-2 font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                          >
                             Edit
                           </span>
                           |
-                          <span className="cursor-pointer ml-2 font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                          <span
+                            onClick={() =>
+                              setDeleteModal({ isOpen: true, data: item })
+                            }
+                            className="cursor-pointer ml-2 font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                          >
                             Delete
                           </span>
                         </td>
@@ -97,6 +110,12 @@ export default function MyArtifacts() {
           )}
         </div>
       </section>
+      {modal.isOpen && (
+        <UptateArtifactModal data={modal.data} setModal={setModal} />
+      )}
+      {deleteModal.isOpen && (
+        <DeleteModal data={deleteModal.data} setDeleteModal={setDeleteModal} />
+      )}
     </>
   );
 }
