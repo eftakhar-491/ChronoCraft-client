@@ -27,8 +27,7 @@ export default function ArtifactDetails() {
       await axiosSecure.get(`/artifacts/likes/${user?.email}`),
   });
   const likesDataArr = likes?.data?.map((x) => x.id);
-  console.log("likes->", likes);
-  console.log(likesDataArr?.includes(id));
+
   const { mutate, data: addlikedata } = useMutation({
     mutationKey: ["artifactsLikes"],
 

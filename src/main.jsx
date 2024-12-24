@@ -44,7 +44,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/liked-artifacts",
-        element: <LikedArtifact />,
+        element: (
+          <ComProtect>
+            <LikedArtifact />
+          </ComProtect>
+        ),
       },
       {
         path: "/artifacts-details/:id",
