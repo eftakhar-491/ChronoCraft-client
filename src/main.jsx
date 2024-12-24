@@ -13,10 +13,12 @@ import LikedArtifact from "./Pages/LikedArtifact.jsx";
 import ArtifactDetails from "./Pages/ArtifactDetails.jsx";
 import AuthProtect from "./components/ProtectedRoute/AuthProtect.jsx";
 import ComProtect from "./components/ProtectedRoute/ComProtect.jsx";
+import Error from "./Pages/Error.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",

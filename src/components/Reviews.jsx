@@ -35,7 +35,10 @@ export default function Reviews() {
         ) : (
           <div className="container mx-auto grid grid-cols-1 gap-8 lg:gap-20 md:px-10 md:pb-10 lg:grid-cols-2">
             {fdata?.map((item, i) => (
-              <div className="flex flex-col items-center mx-12 lg:mx-0">
+              <div
+                key={"R" + i}
+                className="flex flex-col items-center mx-12 lg:mx-0"
+              >
                 <div className="relative text-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
