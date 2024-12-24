@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import world from "../assets/lottie/world.json";
 import bg from "../assets/bg.png";
 import Lottie from "lottie-react";
@@ -12,17 +12,22 @@ import { AuthContext } from "../Firebase/AuthProvider";
 
 export default function AllArtifacts() {
   const navigate = useNavigate();
+  const [likedData, setLikedData] = useState([]);
+
   const axiosSecure = useAxiosSecure();
-  const { user, loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const { data, isLoading, isError } = useQuery({
     queryKey: ["artifacts"],
     queryFn: async () => await axiosSecure.get(`/artifacts`),
   });
 
-  // const { data: likeData } = useQuery({
-  //   queryKey: ["artifactsLikes"],
-  //   queryFn: async () => await axiosSecure.get(`/artifacts/${user?.email}`),
-  // });
+  const { data: likes } = useQuery({
+    queryKey: ["artifactsLikes"],
+    enabled: user?.email ? true : false,
+    queryFn: async () =>
+      await axiosSecure.get(`/artifacts/likes/${user?.email}`),
+  });
+  console.log(user?.email, likes);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error...</div>;
