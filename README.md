@@ -1,8 +1,26 @@
-# React + Vite
+# ChronoCraft
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- live URL https://chrono-craft-art.web.app/
 
-Currently, two official plugins are available:
+## Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ChronoCraft is an application designed to showcase and provide detailed information about various artifacts.
+
+## Key Features
+
+- User authentication with JWT
+- Axios interceptor for API requests
+- Real-time data updates
+- Responsive design
+- Interactive animations with Lottie
+- Efficient data fetching with React Query
+
+## NPM Packages Used
+
+- `@tanstack/react-query`: ^5.62.8
+- `axios`: ^1.7.9
+- `lottie-react`: ^2.4.0
+- `react`: ^18.3.1
+- `react-helmet-async`: ^2.0.5
+- `react-router-dom`: ^7.1.0
+- `swiper`: ^11.1.15

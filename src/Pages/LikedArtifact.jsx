@@ -9,6 +9,7 @@ import useAxiosSecure from "../hooks/useSecureAxios";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import loader from "../assets/lottie/loader.json";
+import { Helmet } from "react-helmet-async";
 
 export default function LikedArtifact() {
   const { user } = useContext(AuthContext);
@@ -53,6 +54,9 @@ export default function LikedArtifact() {
   console.log(data);
   return (
     <>
+      <Helmet>
+        <title>Liked Artifacts</title>
+      </Helmet>
       <section
         style={{ backgroundImage: ` url(${bg})` }}
         className="fixed  h-screen w-full bg-cover bg-center bg-no-repeat"
@@ -68,7 +72,7 @@ export default function LikedArtifact() {
             </div>
           ) : data.length === 0 ? (
             <h1 className="text-center text-2xl py-32 font-Roboto text-white">
-              Not like any artifacts!
+              You Not like any artifacts!
             </h1>
           ) : (
             <section className=" min-h-screen">

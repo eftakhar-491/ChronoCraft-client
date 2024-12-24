@@ -9,6 +9,7 @@ import { AuthContext } from "../Firebase/AuthProvider";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useSecureAxios";
 import Footer from "../components/Footer/Footer";
+import { Helmet } from "react-helmet-async";
 
 export default function AddArtifact() {
   const { user } = useContext(AuthContext);
@@ -43,6 +44,9 @@ export default function AddArtifact() {
   console.log(data);
   return (
     <>
+      <Helmet>
+        <title>Add Artifact</title>
+      </Helmet>
       <section
         style={{ backgroundImage: ` url(${bg})` }}
         className="fixed  h-screen w-full bg-cover bg-center bg-no-repeat"

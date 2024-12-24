@@ -9,6 +9,7 @@ import goo from "../assets/google.png";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
 import Footer from "../components/Footer/Footer";
+import { Helmet } from "react-helmet-async";
 export default function LogIn() {
   const navigate = useNavigate();
   const { signInWithGoogle, setLoading, signIn, loading } =
@@ -33,6 +34,9 @@ export default function LogIn() {
   }
   return (
     <>
+      <Helmet>
+        <title>LogIn</title>
+      </Helmet>
       <section
         style={{ backgroundImage: ` url(${bg})` }}
         className="fixed  h-screen w-full bg-cover bg-center bg-no-repeat"

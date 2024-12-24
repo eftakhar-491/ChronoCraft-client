@@ -8,6 +8,7 @@ import goo from "../assets/google.png";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
 import Footer from "../components/Footer/Footer";
+import { Helmet } from "react-helmet-async";
 export default function Register() {
   const navigate = useNavigate();
   const {
@@ -53,6 +54,9 @@ export default function Register() {
   };
   return (
     <>
+      <Helmet>
+        <title>Register</title>
+      </Helmet>
       <section
         style={{ backgroundImage: ` url(${bg})` }}
         className="fixed  h-screen w-full bg-cover bg-center bg-no-repeat"

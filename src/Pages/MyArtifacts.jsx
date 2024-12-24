@@ -13,6 +13,7 @@ import useAxiosSecure from "../hooks/useSecureAxios";
 import UptateArtifactModal from "../components/Modal/UptateArtifactModal";
 import DeleteModal from "../components/Modal/DeleteModal";
 import Footer from "../components/Footer/Footer";
+import { Helmet } from "react-helmet-async";
 export default function MyArtifacts() {
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
@@ -36,6 +37,9 @@ export default function MyArtifacts() {
 
   return (
     <>
+      <Helmet>
+        <title>My Artifacts</title>
+      </Helmet>
       <section
         style={{ backgroundImage: ` url(${bg})` }}
         className="fixed  h-screen w-full bg-cover bg-center bg-no-repeat"

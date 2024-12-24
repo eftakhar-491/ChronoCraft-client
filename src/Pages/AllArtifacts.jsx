@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../Firebase/AuthProvider";
 import Footer from "../components/Footer/Footer";
+import { Helmet } from "react-helmet-async";
 
 export default function AllArtifacts() {
   const [err, setErr] = useState(false);
@@ -82,6 +83,9 @@ export default function AllArtifacts() {
   if (isError) return <div>Error...</div>;
   return (
     <>
+      <Helmet>
+        <title>All Artifacts</title>
+      </Helmet>
       <section
         style={{ backgroundImage: ` url(${bg})` }}
         className="fixed  h-screen w-full bg-cover bg-center bg-no-repeat"
@@ -98,7 +102,7 @@ export default function AllArtifacts() {
             </h1>
             <form
               onSubmit={handelSearch}
-              className="max-w-[600px] mx-auto flex items-center"
+              className="w-11/12 md:max-w-[600px] mx-auto flex items-center"
             >
               <div className="relative z-0 w-full mt-2 mb-5 group">
                 <input
@@ -127,7 +131,7 @@ export default function AllArtifacts() {
               </div>
               <button
                 type="submit"
-                className="border hover:bg-[#0E2A2E] flex items-center justify-center text-white w-10 h-10 rounded-full"
+                className="rounded-full hover:bg-[#0E2A2E] flex items-center justify-center text-white w-10 h-10 "
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +139,7 @@ export default function AllArtifacts() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="size-6"
+                  className="size-6 "
                 >
                   <path
                     strokeLinecap="round"
