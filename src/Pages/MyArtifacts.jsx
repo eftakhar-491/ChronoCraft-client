@@ -15,7 +15,6 @@ import DeleteModal from "../components/Modal/DeleteModal";
 import Footer from "../components/Footer/Footer";
 import { Helmet } from "react-helmet-async";
 export default function MyArtifacts() {
-  const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [modal, setModal] = useState({ isOpen: false, data: {} });
@@ -33,8 +32,6 @@ export default function MyArtifacts() {
     },
   });
 
-  if (isError) return <div>error...</div>;
-
   return (
     <>
       <Helmet>
@@ -49,7 +46,11 @@ export default function MyArtifacts() {
         </div>
         <div className="fixed overflow-y-auto  w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
           <Nav />
-
+          {isError && (
+            <h1 className="text-3xl font-Roboto text-white text-center py-10">
+              Data not found
+            </h1>
+          )}{" "}
           {isLoading || data.length === 0 ? (
             isLoading ? (
               <div className="max-w-[250px] mx-auto">

@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import useAxiosSecure from "../../hooks/useSecureAxios";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 export default function UptateArtifactModal({ data, setModal }) {
   console.log(data);
   const { user } = useContext(AuthContext);
@@ -20,6 +21,7 @@ export default function UptateArtifactModal({ data, setModal }) {
     onSuccess: (data) => {
       queryClient.invalidateQueries(["myartifacts"]);
       setModal({ isOpen: false, data: {} });
+      toast.success("Artifact Updated Successfully");
     },
   });
   function handelUpdate(e) {
@@ -27,7 +29,6 @@ export default function UptateArtifactModal({ data, setModal }) {
     const formData = new FormData(e.target);
     const fdata = Object.fromEntries(formData);
     mutate(fdata);
-    console.log(data);
   }
   return (
     <>

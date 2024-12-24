@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
 import Footer from "../components/Footer/Footer";
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
 export default function Register() {
   const navigate = useNavigate();
   const {
@@ -35,21 +36,29 @@ export default function Register() {
       return;
     }
     createUser(email, pass)
-      .then((res) => {
+      .then(() => {
         updateUserProfile(name, photo)
-          .then((res) => {
-            console.log(res);
+          .then(() => {
+            toast.success("Register Success");
           })
-          .catch((err) => console.log(err));
+          .catch(() => {
+            toast.error("profile not updated");
+          });
       })
-      .catch((err) => console.log(err))
+      .catch(() => {
+        toast.error("something went wrong");
+      })
       .finaly(() => setLoading(false));
   };
   const handelGoogleRegister = (e) => {
     e.preventDefault();
     signInWithGoogle()
-      .then((res) => {})
-      .catch((err) => console.log(err))
+      .then(() => {
+        toast.success("LogIn Success");
+      })
+      .catch(() => {
+        toast.error("something went wrong");
+      })
       .finaly(() => setLoading(false));
   };
   return (

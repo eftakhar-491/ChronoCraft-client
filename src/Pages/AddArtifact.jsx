@@ -10,6 +10,7 @@ import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useSecureAxios";
 import Footer from "../components/Footer/Footer";
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
 
 export default function AddArtifact() {
   const { user } = useContext(AuthContext);
@@ -37,6 +38,7 @@ export default function AddArtifact() {
     console.log(data);
     addArtifacts(data, {
       onSuccess: () => {
+        toast.success("Artifact Added Successfully");
         e.target.reset();
       },
     });

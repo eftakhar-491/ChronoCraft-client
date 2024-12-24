@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Lottie from "lottie-react";
 import loader from "../assets/lottie/loader.json";
+import { toast } from "react-toastify";
 
 export default function Reviews() {
   const [fdata, setFdata] = useState([]);
@@ -12,6 +13,9 @@ export default function Reviews() {
       .get(`${import.meta.env.VITE_APIURL}/artifacts/feedback`)
       .then((res) => {
         setFdata(res.data);
+      })
+      .catch(() => {
+        toast.error("something went wrong ! reload the page");
       });
   }, []);
   console.log(fdata);

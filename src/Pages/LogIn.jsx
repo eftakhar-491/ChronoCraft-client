@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
 import Footer from "../components/Footer/Footer";
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
 export default function LogIn() {
   const navigate = useNavigate();
   const { signInWithGoogle, setLoading, signIn, loading } =
@@ -18,8 +19,10 @@ export default function LogIn() {
   function handelGoogleLogin(e) {
     e.preventDefault();
     signInWithGoogle()
-      .then((res) => console.log())
-      .catch((err) => console.log(err))
+      .then(() => {
+        toast.success("Login Success");
+      })
+      .catch(() => toast.error("something went wrong"))
       .finally(() => setLoading(false));
   }
   function handelEmailPassLogin(e) {
@@ -28,8 +31,12 @@ export default function LogIn() {
     const pass = e.target.floating_password.value;
     console.log(email, pass);
     signIn(email, pass)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err))
+      .then(() => {
+        toast.success("Login Success");
+      })
+      .catch(() => {
+        toast.error("something went wrong");
+      })
       .finally(() => setLoading(false));
   }
   return (

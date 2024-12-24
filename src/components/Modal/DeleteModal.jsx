@@ -3,6 +3,7 @@ import useAxiosSecure from "../../hooks/useSecureAxios";
 import { useMutation } from "@tanstack/react-query";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 export default function DeleteModal({ data, setDeleteModal }) {
   const axiosSecure = useAxiosSecure();
@@ -19,6 +20,7 @@ export default function DeleteModal({ data, setDeleteModal }) {
     onSuccess: () => {
       quaryClient.invalidateQueries(["myartifacts"]);
       setDeleteModal({ isOpen: false, data: {} });
+      toast.warning("Artifact Deleted");
     },
   });
   function handelDelete(e) {

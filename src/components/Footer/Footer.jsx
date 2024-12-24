@@ -5,6 +5,7 @@ import indin from "../../assets/icon/in.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import useAxiosSecure from "../../hooks/useSecureAxios";
+import { toast } from "react-toastify";
 export default function Footer() {
   const { pathname } = useLocation();
   const { user } = useContext(AuthContext);
@@ -25,12 +26,12 @@ export default function Footer() {
 
     axiosSecure
       .post(`/artifacts/feedback?email=${user?.email}`, feedBack)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        toast.success("Feedback Sent");
         e.target.reset();
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error("Something went wrong! try again");
       });
   }
   return (
