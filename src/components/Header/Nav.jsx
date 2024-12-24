@@ -4,6 +4,7 @@ import profile from "../../assets/lottie/profile.json";
 import Lottie from "lottie-react";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import axios from "axios";
+import { toast } from "react-toastify";
 export default function Nav() {
   const [pro, setPro] = useState(false);
   const [menu, setMenu] = useState(false);
@@ -12,8 +13,12 @@ export default function Nav() {
   const navigate = useNavigate();
   function handelLogout() {
     logOut()
-      .then(() => {})
-      .catch((err) => console.log(err))
+      .then(() => {
+        toast.success("Logout Successfully");
+      })
+      .catch(() => {
+        toast.error("Something went wrong ! try again");
+      })
       .finally(() => setLoading(false));
   }
   return (

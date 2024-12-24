@@ -18,16 +18,12 @@ const useAxiosSecure = () => {
       (res) => res,
 
       async (error) => {
-        console.log(
-          "error caught from our very own axios interceptor-->",
-          error
-        );
         if (
           error?.response?.status === 401 ||
           error?.response?.status === 403
         ) {
           const res = await logOut();
-          console.log(res);
+
           if (res.success) {
             alert("Session Expired, Please Login Again");
             navigate("/login");

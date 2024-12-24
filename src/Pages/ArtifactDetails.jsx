@@ -37,7 +37,7 @@ export default function ArtifactDetails() {
       queryClient.invalidateQueries(["artifactsDetails", "artifactsLikes1"]);
     },
   });
-  console.log(addlikedata);
+
   function handelLike() {
     mutate({ id: data.data._id, email: user?.email });
   }

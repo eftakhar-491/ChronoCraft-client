@@ -5,7 +5,6 @@ import { AuthContext } from "../../Firebase/AuthProvider";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 export default function UptateArtifactModal({ data, setModal }) {
-  console.log(data);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();

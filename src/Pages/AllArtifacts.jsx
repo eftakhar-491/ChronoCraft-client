@@ -37,7 +37,7 @@ export default function AllArtifacts() {
       queryClient.invalidateQueries(["artifacts", "artifactsLikes2"]);
     },
   });
-  console.log(addlikedataAll);
+
   function handelAllLike(clickedId) {
     if (user) {
       mutate({ id: clickedId, email: user?.email });
@@ -73,7 +73,6 @@ export default function AllArtifacts() {
     },
   });
 
-  console.log(isSuccess);
   function handelSearch(e) {
     e.preventDefault();
     setDoSearch(true);

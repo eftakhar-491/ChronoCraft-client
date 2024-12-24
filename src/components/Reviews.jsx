@@ -18,7 +18,7 @@ export default function Reviews() {
         toast.error("something went wrong ! reload the page");
       });
   }, []);
-  console.log(fdata);
+
   return (
     <>
       <section className="my-8 w-11/12 mx-auto lg:w-4/5">

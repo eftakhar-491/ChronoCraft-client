@@ -36,7 +36,7 @@ export default function LikedArtifact() {
       queryClient.invalidateQueries(["myLikes", "artifactsLikes3"]);
     },
   });
-  console.log(addMylikedata);
+
   function handelMyLike(clickedId) {
     if (user) {
       mutate({ id: clickedId, email: user?.email });
@@ -51,7 +51,7 @@ export default function LikedArtifact() {
       await axiosSecure.get(`/artifacts/likes/${user?.email}`),
   });
   const likesMyDataArr = Mylikes?.data?.map((x) => x.id);
-  console.log(data);
+
   return (
     <>
       <Helmet>

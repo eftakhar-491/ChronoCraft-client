@@ -19,7 +19,6 @@ export default function MyArtifacts() {
   const { user } = useContext(AuthContext);
   const [modal, setModal] = useState({ isOpen: false, data: {} });
   const [deleteModal, setDeleteModal] = useState({ isOpen: false, data: {} });
-  console.log(user);
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["myartifacts"],

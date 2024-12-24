@@ -35,7 +35,7 @@ export default function AddArtifact() {
       creatorName: user?.displayName,
       like: 0,
     };
-    console.log(data);
+
     addArtifacts(data, {
       onSuccess: () => {
         toast.success("Artifact Added Successfully");
@@ -43,7 +43,7 @@ export default function AddArtifact() {
       },
     });
   };
-  console.log(data);
+
   return (
     <>
       <Helmet>

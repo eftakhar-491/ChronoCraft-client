@@ -42,7 +42,7 @@ export default function Featured() {
       await axiosSecure.get(`/artifacts/likes/${user?.email}`),
   });
   const likesFDataArr = Flikes?.data?.map((x) => x.id);
-  console.log(data);
+
   return (
     <>
       <section className="mt-14">

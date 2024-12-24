@@ -29,7 +29,7 @@ export default function LogIn() {
     e.preventDefault();
     const email = e.target.floating_email.value;
     const pass = e.target.floating_password.value;
-    console.log(email, pass);
+
     signIn(email, pass)
       .then(() => {
         toast.success("Login Success");
