@@ -87,7 +87,10 @@ export default function Hero() {
                     and history of these artifacts, deepening their
                     understanding and connection to the past.
                   </p>
-                  <button className="mx-auto active:scale-95 hover:bg-[#153438] flex items-center gap-2 text-lg mt-5 border-2 px-6 py-1 rounded-xl">
+                  <button
+                    onClick={() => navigate("/add-artifact")}
+                    className="mx-auto active:scale-95 hover:bg-[#153438] flex items-center gap-2 text-lg mt-5 border-2 px-6 py-1 rounded-xl"
+                  >
                     Add Artifacts{" "}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +111,42 @@ export default function Hero() {
               </div>
             </SwiperSlide>
             <SwiperSlide className=" ">
-              <div className="h-[600px]">asdfas</div>
+              <div className="h-[600px]  justify-between flex gap-4 items-center lg:w-4/5 mx-auto w-11/12 ">
+                <div className="w-11/12 mx-auto lg:w-4/5 text-white">
+                  <h1 className="text-5xl font-Cinzel text-center">
+                    Add Your Own Artifacts
+                  </h1>
+                  <p className="text-sm font-Roboto mt-3 text-center">
+                    Unleash your creativity and share your own story! With our
+                    "Write Your Own Artifacts" feature, you can craft detailed
+                    descriptions, historical narratives, or personal reflections
+                    about artifacts that hold meaning to you. Bring your
+                    imagination to life and contribute to a growing collection
+                    of treasures, showcasing the power of storytelling through
+                    history and culture.
+                  </p>
+                  <button
+                    onClick={() => navigate("/my-artifacts")}
+                    className="mx-auto active:scale-95 hover:bg-[#153438] flex items-center gap-2 text-lg mt-5 border-2 px-6 py-1 rounded-xl"
+                  >
+                    My Artifacts{" "}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="size-5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </SwiperSlide>
           </Swiper>
         </div>

@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../Firebase/AuthProvider";
 export const axiosSecure = axios.create({
   baseURL: import.meta.env.VITE_APIURL,
   withCredentials: true,
@@ -9,6 +10,7 @@ export const axiosSecure = axios.create({
 });
 
 const useAxiosSecure = () => {
+  const { logOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,11 +26,12 @@ const useAxiosSecure = () => {
           error?.response?.status === 401 ||
           error?.response?.status === 403
         ) {
-          // logout
-          // logOut();
-          // navigate to login
-          // navigate("/login");
-          console.log(401);
+          const res = await logOut();
+          console.log(res);
+          if (res.success) {
+            alert("Session Expired, Please Login Again");
+            navigate("/login");
+          }
         }
       }
     );

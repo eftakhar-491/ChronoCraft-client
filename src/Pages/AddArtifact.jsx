@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useSecureAxios";
+import Footer from "../components/Footer/Footer";
 
 export default function AddArtifact() {
   const { user } = useContext(AuthContext);
@@ -49,7 +50,7 @@ export default function AddArtifact() {
         <div className=" w-[600px] mx-auto absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <Lottie animationData={world} loop={true}></Lottie>
         </div>
-        <div className="fixed overflow-y-scroll w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
+        <div className="fixed overflow-y-auto w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
           <Nav />
           <form
             onSubmit={handelAddArtifact}
@@ -223,6 +224,7 @@ export default function AddArtifact() {
               </svg>
             </button>
           </form>
+          <Footer />
         </div>
       </section>
     </>

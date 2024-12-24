@@ -3,14 +3,16 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import profile from "../../assets/lottie/profile.json";
 import Lottie from "lottie-react";
 import { AuthContext } from "../../Firebase/AuthProvider";
+import axios from "axios";
 export default function Nav() {
   const [pro, setPro] = useState(false);
   const [menu, setMenu] = useState(false);
   const { user, logOut, setLoading } = useContext(AuthContext);
+  const [tooltip, setTooltip] = useState(false);
   const navigate = useNavigate();
   function handelLogout() {
     logOut()
-      .then(() => console.log("Logged Out"))
+      .then(() => {})
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
   }
@@ -20,7 +22,10 @@ export default function Nav() {
         <div className="relative w-11/12 lg:w-4/5 mx-auto flex justify-between items-center py-4">
           {/* menu icon */}
 
-          <h1 className="font-bold text-[14px] flex items-center gap-1 lg:text-2xl">
+          <h1
+            onClick={() => navigate("/")}
+            className="cursor-pointer font-bold text-[14px] flex items-center gap-1 lg:text-2xl"
+          >
             <span onClick={() => setMenu((p) => !p)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -88,6 +93,15 @@ export default function Nav() {
 
             <div className="relative w-10 h-10 rounded-full">
               <div
+                className={`${
+                  tooltip ? "block" : "hidden"
+                } absolute right-6 top-11 border px-3 py-1 rounded-md backdrop-blur-xl bg-[#0E292D]/60 text-nowrap`}
+              >
+                {user ? user?.displayName : "Login your account"}
+              </div>
+              <div
+                onMouseOver={() => setTooltip(true)}
+                onMouseLeave={() => setTooltip(false)}
                 onClick={() => setPro((p) => !p)}
                 className="border-2 active:scale-95 cursor-pointer w-full h-full bg-white rounded-full flex items-center justify-center"
               >

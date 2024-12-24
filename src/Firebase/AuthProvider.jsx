@@ -58,10 +58,11 @@ const AuthProvider = ({ children }) => {
           { withCredentials: true }
         );
       } else {
-        // logOut()
-        //   .then(() => console.log("Logged Out"))
-        //   .catch((err) => console.log(err))
-        //   .finally(() => setLoading(false));
+        await axios.post(
+          `${import.meta.env.VITE_APIURL}/logout`,
+          {},
+          { withCredentials: true }
+        );
       }
       console.log("CurrentUser-->", currentUser);
       setLoading(false);

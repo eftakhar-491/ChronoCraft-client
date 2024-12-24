@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
 
 export default function AllArtifacts() {
+  const [err, setErr] = useState(false);
   const [search, setSearch] = useState("");
   const [doSearch, setDoSearch] = useState(false);
   const [searchData, setSearchData] = useState([]);
@@ -48,23 +49,28 @@ export default function AllArtifacts() {
       await axiosSecure.get(`/artifacts/likes/${user?.email}`),
   });
   const likesAllDataArr = Alllikes?.data?.map((x) => x.id);
-  const { data: sData, refetch } = useQuery({
+  const {
+    data: sData,
+    refetch,
+    isSuccess,
+  } = useQuery({
     queryKey: ["search"],
     enabled: doSearch,
     queryFn: async () => {
       const res = await axiosSecure.get(`/artifacts/search/${search}`);
       setSearchData(res?.data);
-
+      res?.data.length === 0 && setErr(true);
       return res?.data;
     },
-    onSuccess: () => {
-      console.log("onsuccess ->", data);
+    onSuccess: (data) => {
       setSearchData(data);
       setDoSearch(false);
+
+      sData.length === 0 && setErr(true);
     },
   });
 
-  console.log(searchData);
+  console.log(isSuccess);
   function handelSearch(e) {
     e.preventDefault();
     setDoSearch(true);
@@ -97,6 +103,7 @@ export default function AllArtifacts() {
                   value={search}
                   onChange={(e) => {
                     setSearch(e.target.value);
+                    setErr(false);
                     if (e.target.value === "") {
                       setDoSearch(true);
                       setSearchData([]);
@@ -136,6 +143,9 @@ export default function AllArtifacts() {
                 </svg>
               </button>
             </form>
+            <p className="text-sm text-center -mt-4 mb-4 text-red-500">
+              {err && "No data found"}
+            </p>
             <hr />
             <div className="text-white w-11/12 mx-auto lg:w-4/5 grid grid-cols-1 gap-2 justify-items-center md:grid-cols-2 mt-10">
               {searchData?.length
