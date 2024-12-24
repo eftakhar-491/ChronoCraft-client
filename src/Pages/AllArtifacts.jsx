@@ -5,21 +5,27 @@ import Lottie from "lottie-react";
 import Nav from "../components/Header/Nav";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useSecureAxios";
-import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
-import StateContext from "../context/StateContext";
+
+import { AuthContext } from "../Firebase/AuthProvider";
 
 export default function AllArtifacts() {
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
-  const { setDetailsId } = useContext(StateContext);
+  const { user, loading } = useContext(AuthContext);
   const { data, isLoading, isError } = useQuery({
     queryKey: ["artifacts"],
-    queryFn: async () => await axiosSecure.get("/artifacts"),
+    queryFn: async () => await axiosSecure.get(`/artifacts`),
   });
+
+  // const { data: likeData } = useQuery({
+  //   queryKey: ["artifactsLikes"],
+  //   queryFn: async () => await axiosSecure.get(`/artifacts/${user?.email}`),
+  // });
+
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error...</div>;
-  console.log(data, isLoading, isError);
   return (
     <>
       <section
@@ -68,8 +74,7 @@ export default function AllArtifacts() {
                       </div>
                       <button
                         onClick={() => {
-                          setDetailsId(data._id);
-                          navigate(`/artifacts-details`);
+                          navigate(`/artifacts-details/${data._id}`);
                         }}
                         className="active:scale-95 hover:border-black hover:bg-slate-200 flex items-center gap-2 text-lg mt-2 border-2 px-6 py-1 rounded-xl"
                       >

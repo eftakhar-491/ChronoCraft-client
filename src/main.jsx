@@ -28,7 +28,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-artifact",
-        element: <AddArtifact />,
+        element: (
+          <ComProtect>
+            <AddArtifact />
+          </ComProtect>
+        ),
       },
       {
         path: "/my-artifacts",
@@ -43,8 +47,12 @@ const router = createBrowserRouter([
         element: <LikedArtifact />,
       },
       {
-        path: "/artifacts-details",
-        element: <ArtifactDetails />,
+        path: "/artifacts-details/:id",
+        element: (
+          <ComProtect>
+            <ArtifactDetails />
+          </ComProtect>
+        ),
       },
       {
         path: "/login",
