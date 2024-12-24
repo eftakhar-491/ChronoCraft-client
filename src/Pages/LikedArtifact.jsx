@@ -66,8 +66,11 @@ export default function LikedArtifact() {
               My Liked Artifacts
             </h1>
             <div className="text-white w-11/12 mx-auto lg:w-4/5 grid grid-cols-1 gap-2 justify-items-center md:grid-cols-2 mt-10">
-              {data?.map((item) => (
-                <div className="border w-[300px] xl:w-fit flex xl:flex-row flex-col items-center gap-4 p-3 rounded-xl shadow-lg">
+              {data?.map((item, i) => (
+                <div
+                  key={"mylike" + i}
+                  className="border w-[300px] xl:w-fit flex xl:flex-row flex-col items-center gap-4 p-3 rounded-xl shadow-lg"
+                >
                   <img
                     className="xl:w-[260px] w-full h-[250px] rounded-xl shadow-2xl"
                     src={item?.photo}
