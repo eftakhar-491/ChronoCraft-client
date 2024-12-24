@@ -5,6 +5,7 @@ import bg from "../../assets/bg.png";
 import Lottie from "lottie-react";
 import Nav from "../Header/Nav";
 import { Navigate } from "react-router-dom";
+import loader from "../../assets/lottie/loader.json";
 
 export default function ComProtect({ children }) {
   const { user, loading } = useContext(AuthContext);
@@ -19,7 +20,11 @@ export default function ComProtect({ children }) {
         </div>
         <div className="fixed overflow-y-auto  w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
           <Nav />
-          <div className="text-white">loading...</div>
+          <div className="text-white">
+            <div className="max-w-[250px] mx-auto">
+              <Lottie animationData={loader} loop={true}></Lottie>
+            </div>
+          </div>
         </div>
       </section>
     );

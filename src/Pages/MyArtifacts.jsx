@@ -3,6 +3,7 @@ import world from "../assets/lottie/world.json";
 import bg from "../assets/bg.png";
 import Lottie from "lottie-react";
 import Nav from "../components/Header/Nav";
+import loader from "../assets/lottie/loader.json";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
@@ -11,6 +12,7 @@ import useAxiosSecure from "../hooks/useSecureAxios";
 
 import UptateArtifactModal from "../components/Modal/UptateArtifactModal";
 import DeleteModal from "../components/Modal/DeleteModal";
+import Footer from "../components/Footer/Footer";
 export default function MyArtifacts() {
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
@@ -30,8 +32,6 @@ export default function MyArtifacts() {
     },
   });
 
-  console.log(data, isLoading, isError);
-  if (isLoading) return <div>loading...</div>;
   if (isError) return <div>error...</div>;
 
   return (
@@ -45,10 +45,19 @@ export default function MyArtifacts() {
         </div>
         <div className="fixed overflow-y-auto  w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
           <Nav />
-          {data.length === 0 ? (
-            <h1>You are not added anything</h1>
+
+          {isLoading || data.length === 0 ? (
+            isLoading ? (
+              <div className="max-w-[250px] mx-auto">
+                <Lottie animationData={loader} loop={true}></Lottie>
+              </div>
+            ) : (
+              <h1 className="text-2xl font-Roboto text-white text-center py-40">
+                You are not added anything
+              </h1>
+            )
           ) : (
-            <section className="w-11/12 mx-auto lg:w-4/5">
+            <section className="min-h-screen w-11/12 mx-auto lg:w-4/5">
               <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                   <thead className="text-xs text-white border-b-2 uppercase bg-transparent ">
@@ -118,6 +127,7 @@ export default function MyArtifacts() {
               </div>
             </section>
           )}
+          <Footer />
         </div>
       </section>
       {modal.isOpen && (

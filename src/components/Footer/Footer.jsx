@@ -36,7 +36,9 @@ export default function Footer() {
   return (
     <>
       <footer
-        className={`${pathname === "/" ? "text-black" : "text-white"} mt-14`}
+        className={` bottom-0 ${
+          pathname === "/" ? "text-black" : "text-white"
+        } mt-14`}
       >
         <hr />
         <div className="flex lg:flex-row flex-col gap-6 lg:items-center justify-between w-11/12 mx-auto py-10 lg:w-4/5">

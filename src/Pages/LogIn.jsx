@@ -2,10 +2,13 @@ import React, { useContext } from "react";
 import world from "../assets/lottie/world.json";
 import bg from "../assets/bg.png";
 import Lottie from "lottie-react";
+import loader from "../assets/lottie/loader.json";
+
 import Nav from "../components/Header/Nav";
 import goo from "../assets/google.png";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
+import Footer from "../components/Footer/Footer";
 export default function LogIn() {
   const navigate = useNavigate();
   const { signInWithGoogle, setLoading, signIn, loading } =
@@ -37,10 +40,12 @@ export default function LogIn() {
         <div className=" w-[600px] mx-auto absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <Lottie animationData={world} loop={true}></Lottie>
         </div>
-        <div className="fixed  w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
+        <div className="fixed overflow-y-auto w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
           <Nav />
           {loading ? (
-            <h1>Loading</h1>
+            <div className="max-w-[250px] mx-auto">
+              <Lottie animationData={loader} loop={true}></Lottie>
+            </div>
           ) : (
             <form
               onSubmit={handelEmailPassLogin}
@@ -124,6 +129,7 @@ export default function LogIn() {
               </p>
             </form>
           )}
+          <Footer />
         </div>
       </section>
     </>

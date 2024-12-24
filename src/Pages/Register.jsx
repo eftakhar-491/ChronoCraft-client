@@ -7,6 +7,7 @@ import Nav from "../components/Header/Nav";
 import goo from "../assets/google.png";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
+import Footer from "../components/Footer/Footer";
 export default function Register() {
   const navigate = useNavigate();
   const {
@@ -59,7 +60,7 @@ export default function Register() {
         <div className=" w-[600px] mx-auto absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <Lottie animationData={world} loop={true}></Lottie>
         </div>
-        <div className="fixed  w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
+        <div className="fixed overflow-y-auto w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
           <Nav />
           {loading ? (
             <div className="max-w-[250px] mx-auto">
@@ -178,6 +179,7 @@ export default function Register() {
               </p>
             </form>
           )}{" "}
+          <Footer />
         </div>
       </section>
     </>
