@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import useAxiosSecure from "../hooks/useSecureAxios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
@@ -7,11 +7,18 @@ import loader from "../assets/lottie/loader.json";
 import Lottie from "lottie-react";
 
 export default function Featured() {
+  const [z, setZ] = useState(true);
+
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const queryClient = useQueryClient();
-  const { data, isLoading, isError } = useQuery({
+  const {
+    data,
+    isLoading,
+    isError,
+    isSuccess: x,
+  } = useQuery({
     queryKey: ["featuredArtifacts"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/artifacts/home`);
@@ -26,16 +33,21 @@ export default function Featured() {
       await axiosSecure.post(`/artifacts/likes?email=${user?.email}`, x),
     onSuccess: () => {
       queryClient.invalidateQueries(["featuredArtifacts", "artifactsLikes4"]);
+      setZ(true);
     },
   });
   function handelFLike(clickedId) {
+    if (!x || !y || !z) {
+      return;
+    }
     if (user) {
       mutate({ id: clickedId, email: user?.email });
+      setZ(false);
     } else {
       navigate("/login");
     }
   }
-  const { data: Flikes } = useQuery({
+  const { data: Flikes, isSuccess: y } = useQuery({
     queryKey: ["artifactsLikes4"],
     enabled: user?.email ? true : false,
     queryFn: async () =>

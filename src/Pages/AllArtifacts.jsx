@@ -14,6 +14,7 @@ import Footer from "../components/Footer/Footer";
 import { Helmet } from "react-helmet-async";
 
 export default function AllArtifacts() {
+  const [z, setZ] = useState(true);
   const [err, setErr] = useState(false);
   const [search, setSearch] = useState("");
   const [doSearch, setDoSearch] = useState(false);
@@ -22,7 +23,12 @@ export default function AllArtifacts() {
   const queryClient = useQueryClient();
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
-  const { data, isLoading, isError } = useQuery({
+  const {
+    data,
+    isLoading,
+    isError,
+    isSuccess: x,
+  } = useQuery({
     queryKey: ["artifacts"],
     queryFn: async () => await axiosSecure.get(`/artifacts`),
   });
@@ -34,29 +40,30 @@ export default function AllArtifacts() {
     mutationFn: async (x) =>
       await axiosSecure.post(`/artifacts/likes?email=${user?.email}`, x),
     onSuccess: () => {
+      setZ(true);
       queryClient.invalidateQueries(["artifacts", "artifactsLikes2"]);
     },
   });
 
   function handelAllLike(clickedId) {
+    if (!x || !y || !z) {
+      return;
+    }
     if (user) {
       mutate({ id: clickedId, email: user?.email });
+      setZ(false);
     } else {
       navigate("/login");
     }
   }
-  const { data: Alllikes } = useQuery({
+  const { data: Alllikes, isSuccess: y } = useQuery({
     queryKey: ["artifactsLikes2"],
     enabled: user?.email ? true : false,
     queryFn: async () =>
       await axiosSecure.get(`/artifacts/likes/${user?.email}`),
   });
   const likesAllDataArr = Alllikes?.data?.map((x) => x.id);
-  const {
-    data: sData,
-    refetch,
-    isSuccess,
-  } = useQuery({
+  const { data: sData, refetch } = useQuery({
     queryKey: ["search"],
     enabled: doSearch,
     queryFn: async () => {

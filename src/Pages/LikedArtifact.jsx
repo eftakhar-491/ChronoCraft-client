@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import world from "../assets/lottie/world.json";
 import bg from "../assets/bg.png";
 import Lottie from "lottie-react";
@@ -12,11 +12,18 @@ import loader from "../assets/lottie/loader.json";
 import { Helmet } from "react-helmet-async";
 
 export default function LikedArtifact() {
+  const [z, setZ] = useState(true);
+
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
-  const { data, isLoading, isError } = useQuery({
+  const {
+    data,
+    isLoading,
+    isError,
+    isSuccess: x,
+  } = useQuery({
     queryKey: ["myLikes"],
     enabled: user?.email ? true : false,
     queryFn: async () => {
@@ -33,18 +40,23 @@ export default function LikedArtifact() {
     mutationFn: async (x) =>
       await axiosSecure.post(`/artifacts/likes?email=${user?.email}`, x),
     onSuccess: () => {
+      setZ(true);
       queryClient.invalidateQueries(["myLikes", "artifactsLikes3"]);
     },
   });
 
   function handelMyLike(clickedId) {
+    if (!x || !y || !z) {
+      return;
+    }
     if (user) {
       mutate({ id: clickedId, email: user?.email });
+      setZ(false);
     } else {
       navigate("/login");
     }
   }
-  const { data: Mylikes } = useQuery({
+  const { data: Mylikes, isSuccess: y } = useQuery({
     queryKey: ["artifactsLikes3"],
     enabled: user?.email ? true : false,
     queryFn: async () =>
@@ -66,6 +78,11 @@ export default function LikedArtifact() {
         </div>
         <div className="fixed overflow-y-scroll w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
           <Nav />
+          {isError && (
+            <h1 className="text-center text-2xl py-32 font-Roboto text-white">
+              something went wrong! reload the page
+            </h1>
+          )}
           {isLoading ? (
             <div className="max-w-[250px] mx-auto">
               <Lottie animationData={loader} loop={true}></Lottie>
