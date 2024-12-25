@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import h1 from "../../assets/1.png";
 import h2 from "../../assets/2.jpg";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { use } from "react";
+
 import { useNavigate } from "react-router-dom";
 
 export default function Hero() {

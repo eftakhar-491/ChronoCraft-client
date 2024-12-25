@@ -189,7 +189,7 @@ export default function UptateArtifactModal({ data, setModal }) {
               Present Location
             </label>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-col md:flex-row gap-2">
             <button
               onClick={() => {
                 setModal({ isOpen: false, data: {} });

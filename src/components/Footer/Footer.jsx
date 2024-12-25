@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import fb from "../../assets/icon/fb.png";
 import yt from "../../assets/icon/yt.png";
 import indin from "../../assets/icon/in.png";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import useAxiosSecure from "../../hooks/useSecureAxios";
 import { toast } from "react-toastify";
@@ -46,8 +46,12 @@ export default function Footer() {
           <div className="flex-1">
             <h1 className="text-3xl font-Cinzel font-semibold">Chrono Craft</h1>
             <ul className="text-sm font-Roboto mt-3">
-              <li className="cursor-pointer">Home</li>
-              <li className="cursor-pointer">All Artifacts</li>
+              <Link to={"/"}>
+                <li className="cursor-pointer">Home</li>
+              </Link>
+              <Link to={"/artifacts"}>
+                <li className="cursor-pointer">All Artifacts</li>
+              </Link>
             </ul>
             <div className=" flex gap-1 mt-2">
               <img className="w-9 h-9" src={fb} alt="" />

@@ -5,7 +5,7 @@ export default function Gallery() {
     <>
       <section className="mt-14 w-11/12 lg:w-4/5 mx-auto">
         <div>
-          <h1 className="text-4xl font-Cinzel text-center">
+          <h1 className="text-xl md:text-4xl font-Cinzel text-center">
             --- Gallery Artifacts ---{" "}
           </h1>
           <p className="text-sm font-Roboto text-center max-w-[600px] mx-auto">

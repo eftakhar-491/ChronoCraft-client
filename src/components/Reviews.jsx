@@ -23,7 +23,7 @@ export default function Reviews() {
     <>
       <section className="my-8 w-11/12 mx-auto lg:w-4/5">
         <div className="container mx-auto flex flex-col items-center pb-6 mb-4 md:p-10 md:px-12">
-          <h1 className="font-Cinzel text-4xl leading-none text-center">
+          <h1 className="font-Cinzel font-semibold md:text-4xl leading-none text-center">
             --- What our Viewer are saying ---
           </h1>
           <p className="text-sm font-Roboto text-center max-w-[600px] mx-auto">
@@ -41,7 +41,7 @@ export default function Reviews() {
             {fdata?.map((item, i) => (
               <div
                 key={"R" + i}
-                className="flex flex-col items-center mx-12 lg:mx-0"
+                className="flex flex-col items-center md:mx-12 lg:mx-0"
               >
                 <div className="relative text-center">
                   <svg
@@ -53,7 +53,9 @@ export default function Reviews() {
                     <path d="M232,246.857V16H16V416H54.4ZM48,48H200V233.143L48,377.905Z"></path>
                     <path d="M280,416h38.4L496,246.857V16H280ZM312,48H464V233.143L312,377.905Z"></path>
                   </svg>
-                  <p className="px-6 py-1 text-lg italic">{item?.message}</p>
+                  <p className="md:px-6 px-4 py-1 text-lg italic">
+                    {item?.message}
+                  </p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512"

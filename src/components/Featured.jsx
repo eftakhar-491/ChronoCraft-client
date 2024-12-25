@@ -47,7 +47,7 @@ export default function Featured() {
     <>
       <section className="mt-14">
         <div>
-          <h1 className="text-4xl font-Cinzel text-center">
+          <h1 className="text-xl md:text-4xl font-Cinzel text-center">
             ---Featured Artifacts---{" "}
           </h1>
           <p className="text-sm font-Roboto text-center max-w-[600px] mx-auto">
@@ -132,7 +132,7 @@ export default function Featured() {
         )}
         <button
           onClick={() => navigate("/artifacts")}
-          className="font-Cinzel active:scale-95 mx-auto mt-7 hover:bg-slate-200 flex items-center gap-2 text-lg border-2 px-6 py-1 rounded-xl"
+          className="font-Cinzel active:scale-95 mx-auto mt-7 hover:bg-slate-200 flex items-center gap-2 text-sm md:text-lg border-2 px-6 py-1 rounded-xl"
         >
           ---Show All Artifacts---
         </button>

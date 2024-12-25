@@ -9,6 +9,7 @@ import useAxiosSecure from "../hooks/useSecureAxios";
 import { AuthContext } from "../Firebase/AuthProvider";
 import { useParams } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
+import { toast } from "react-toastify";
 
 export default function ArtifactDetails() {
   const { id } = useParams();
@@ -34,6 +35,11 @@ export default function ArtifactDetails() {
     mutationFn: async (x) =>
       await axiosSecure.post(`/artifacts/likes?email=${user?.email}`, x),
     onSuccess: () => {
+      if (likesDataArr?.includes(id)) {
+        toast("Artifact Unliked");
+      } else {
+        toast("Thank You ! for liking this artifact");
+      }
       queryClient.invalidateQueries(["artifactsDetails", "artifactsLikes1"]);
     },
   });

@@ -10,7 +10,7 @@ import loader from "../../assets/lottie/loader.json";
 export default function ComProtect({ children }) {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
-  console.log(location);
+
   if (loading) {
     return (
       <section

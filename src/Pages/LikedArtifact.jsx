@@ -135,7 +135,7 @@ export default function LikedArtifact() {
                           onClick={() =>
                             navigate(`/artifacts-details/${item._id}`)
                           }
-                          className="active:scale-95 hover:border-black hover:bg-slate-200 flex items-center gap-2 text-lg mt-2 border-2 px-6 py-1 rounded-xl"
+                          className="active:scale-95 hover:border-black hover:bg-[#0D292D] hover:shadow-2xl flex items-center gap-2 text-lg mt-2 border-2 px-6 py-1 rounded-xl"
                         >
                           View Details
                         </button>
