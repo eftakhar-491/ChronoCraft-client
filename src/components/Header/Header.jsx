@@ -16,7 +16,7 @@ export default function Header() {
           {/* <Lottie animationData={heroLottie} loop={true}></Lottie> */}
           <Lottie animationData={world} loop={true}></Lottie>
         </div>
-        <div className="backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
+        <div className="backdrop-blur-lg bg-[#3FAEBB]/5  h-screen">
           <Nav />
           <Hero />
         </div>

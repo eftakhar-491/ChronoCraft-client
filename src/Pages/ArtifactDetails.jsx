@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import world from "../assets/lottie/world.json";
 import bg from "../assets/bg.png";
 import Lottie from "lottie-react";
@@ -12,20 +12,42 @@ import Footer from "../components/Footer/Footer";
 import { toast } from "react-toastify";
 
 export default function ArtifactDetails() {
+  const [z, setZ] = useState(true);
+  const [likeFn, setLikeFn] = useState({ count: 0, isLiked: false });
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
-  const { data, isLoading, isError } = useQuery({
+  const {
+    data,
+    isLoading,
+    isError,
+    isSuccess: x,
+  } = useQuery({
     queryKey: ["artifactsDetails"],
-    queryFn: async () =>
-      await axiosSecure.get(`/artifacts/details/${id}?email=${user?.email}`),
+    queryFn: async () => {
+      const res = await axiosSecure.get(
+        `/artifacts/details/${id}?email=${user?.email}`
+      );
+      setLikeFn((p) => {
+        return { count: res.data.like, isLiked: p.isLiked };
+      });
+      return res;
+    },
   });
-  const { data: likes } = useQuery({
+  const { data: likes, isSuccess: y } = useQuery({
     queryKey: ["artifactsLikes1"],
     enabled: user?.email ? true : false,
-    queryFn: async () =>
-      await axiosSecure.get(`/artifacts/likes/${user?.email}`),
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/artifacts/likes/${user?.email}`);
+      setLikeFn((p) => {
+        return {
+          count: p.count,
+          isLiked: res?.data?.map((x) => x.id).includes(id),
+        };
+      });
+      return res;
+    },
   });
   const likesDataArr = likes?.data?.map((x) => x.id);
 
@@ -40,12 +62,23 @@ export default function ArtifactDetails() {
       } else {
         toast("Thank You ! for liking this artifact");
       }
+      setZ(true);
       queryClient.invalidateQueries(["artifactsDetails", "artifactsLikes1"]);
     },
   });
-
   function handelLike() {
+    setLikeFn((p) => {
+      return {
+        count: p.isLiked ? p.count - 1 : p.count + 1,
+        isLiked: !p.isLiked,
+      };
+    });
+    if (!x || !y || !z) {
+      return;
+    }
+
     mutate({ id: data.data._id, email: user?.email });
+    setZ(false);
   }
 
   return (
@@ -133,9 +166,9 @@ export default function ArtifactDetails() {
                   <hr />
 
                   <div className="mt-4 flex gap-2 font-Cinzel">
-                    {data.data.like} Liked_
+                    {likeFn.count} Liked_
                     <span onClick={handelLike} className=" cursor-pointer">
-                      {likesDataArr?.includes(id) ? (
+                      {likeFn.isLiked ? (
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
