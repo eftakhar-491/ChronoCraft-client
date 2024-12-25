@@ -4,10 +4,12 @@ import { useMutation } from "@tanstack/react-query";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function DeleteModal({ data, setDeleteModal }) {
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const quaryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationKey: ["deleteArtifact"],
@@ -20,6 +22,7 @@ export default function DeleteModal({ data, setDeleteModal }) {
     onSuccess: () => {
       quaryClient.invalidateQueries(["myartifacts"]);
       setDeleteModal({ isOpen: false, data: {} });
+      navigate("/artifacts");
       toast.warning("Artifact Deleted");
     },
   });
