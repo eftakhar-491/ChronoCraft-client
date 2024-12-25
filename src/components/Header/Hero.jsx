@@ -75,7 +75,7 @@ export default function Hero() {
             <SwiperSlide className=" ">
               <div className="h-[600px]  justify-between flex gap-4 items-center lg:w-4/5 mx-auto w-11/12 ">
                 <div className="w-11/12 mx-auto lg:w-4/5 text-white">
-                  <h1 className="text-5xl font-Cinzel text-center">
+                  <h1 className="text-3xl lg:text-5xl font-Cinzel text-center">
                     Preserve history by sharing your artifacts and exploring the
                     stories
                   </h1>
@@ -113,7 +113,7 @@ export default function Hero() {
             <SwiperSlide className=" ">
               <div className="h-[600px]  justify-between flex gap-4 items-center lg:w-4/5 mx-auto w-11/12 ">
                 <div className="w-11/12 mx-auto lg:w-4/5 text-white">
-                  <h1 className="text-5xl font-Cinzel text-center">
+                  <h1 className="text-3xl lg:text-5xl font-Cinzel text-center">
                     Add Your Own Artifacts
                   </h1>
                   <p className="text-sm font-Roboto mt-3 text-center">

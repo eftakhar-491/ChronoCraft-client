@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import profile from "../../assets/lottie/profile.json";
 import Lottie from "lottie-react";
 import { AuthContext } from "../../Firebase/AuthProvider";
-import axios from "axios";
+
 import { toast } from "react-toastify";
 export default function Nav() {
   const [pro, setPro] = useState(false);
@@ -53,12 +53,12 @@ export default function Nav() {
           <ul
             className={`${
               menu ? "block" : "hidden"
-            } backdrop-blur-lg md:backdrop-blur-none bg-[#101A1Cf5] md:bg-transparent font-semibold absolute z-50 rounded-lg md:rounded-none md:top-0 top-14 border-2 md:border-0 p-3 md:p-0 md:relative md:flex md:space-x-5 text-sm`}
+            }  backdrop-blur-lg md:backdrop-blur-none bg-[#101A1Cf5] md:bg-transparent font-semibold absolute z-50 rounded-lg md:rounded-none md:top-0 top-14 border-2 md:border-0 p-3 md:p-0 md:relative md:flex md:space-x-5 text-sm`}
           >
             <NavLink
               to="/"
               className={({ isActive }) =>
-                isActive ? "underline font-extrabold" : "text-gray-500"
+                isActive ? "underline font-extrabold" : "text-gray-400"
               }
             >
               <li>Home</li>
@@ -73,6 +73,7 @@ export default function Nav() {
             </NavLink>
             <NavLink
               to="/add-artifact"
+              state={{ his: "/add-artifact" }}
               className={({ isActive }) =>
                 isActive ? "underline font-extrabold" : "text-gray-400"
               }
@@ -128,6 +129,7 @@ export default function Nav() {
                 <ul className=" flex flex-col space-y-2">
                   <NavLink
                     to="/my-artifacts"
+                    state={{ his: "/my-artifacts" }}
                     className={({ isActive }) =>
                       isActive ? "underline font-extrabold" : ""
                     }
@@ -136,6 +138,7 @@ export default function Nav() {
                   </NavLink>
                   <NavLink
                     to="/liked-artifacts"
+                    state={{ his: "/liked-artifacts" }}
                     className={({ isActive }) =>
                       isActive ? "underline font-extrabold" : ""
                     }

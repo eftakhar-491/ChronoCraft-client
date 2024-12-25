@@ -16,7 +16,7 @@ import Footer from "../components/Footer/Footer";
 import { Helmet } from "react-helmet-async";
 export default function MyArtifacts() {
   const axiosSecure = useAxiosSecure();
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const [modal, setModal] = useState({ isOpen: false, data: {} });
   const [deleteModal, setDeleteModal] = useState({ isOpen: false, data: {} });
 
@@ -29,6 +29,7 @@ export default function MyArtifacts() {
 
       return res.data;
     },
+    // enabled: !loading,
   });
 
   return (

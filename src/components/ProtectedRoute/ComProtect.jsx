@@ -4,11 +4,13 @@ import world from "../../assets/lottie/world.json";
 import bg from "../../assets/bg.png";
 import Lottie from "lottie-react";
 import Nav from "../Header/Nav";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import loader from "../../assets/lottie/loader.json";
 
 export default function ComProtect({ children }) {
   const { user, loading } = useContext(AuthContext);
+  const location = useLocation();
+  console.log(location);
   if (loading) {
     return (
       <section
@@ -29,7 +31,8 @@ export default function ComProtect({ children }) {
       </section>
     );
   }
-  if (!user) return <Navigate to="/login" />;
+  if (!user)
+    return <Navigate to="/login" state={{ his: location?.state?.his }} />;
   if (user) {
     return children;
   }

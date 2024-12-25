@@ -30,8 +30,8 @@ export default function Register() {
     const email = e.target.floating_email.value;
     const pass = e.target.floating_password.value;
     if (!isPasswordValid(pass)) {
-      alert(
-        "Password must contain at least 6 characters, including UPPER/lowercase letters"
+      toast.warning(
+        "Password must contain 6 characters , 1 upper 1 lower case letter"
       );
       return;
     }
@@ -47,8 +47,7 @@ export default function Register() {
       })
       .catch(() => {
         toast.error("something went wrong");
-      })
-      .finaly(() => setLoading(false));
+      });
   };
   const handelGoogleRegister = (e) => {
     e.preventDefault();
@@ -58,8 +57,7 @@ export default function Register() {
       })
       .catch(() => {
         toast.error("something went wrong");
-      })
-      .finaly(() => setLoading(false));
+      });
   };
   return (
     <>

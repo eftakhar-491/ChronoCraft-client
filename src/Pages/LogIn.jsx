@@ -6,13 +6,14 @@ import loader from "../assets/lottie/loader.json";
 
 import Nav from "../components/Header/Nav";
 import goo from "../assets/google.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
 import Footer from "../components/Footer/Footer";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 export default function LogIn() {
   const navigate = useNavigate();
+
   const { signInWithGoogle, setLoading, signIn, loading } =
     useContext(AuthContext);
 
@@ -22,8 +23,7 @@ export default function LogIn() {
       .then(() => {
         toast.success("Login Success");
       })
-      .catch(() => toast.error("something went wrong"))
-      .finally(() => setLoading(false));
+      .catch(() => toast.error("something went wrong"));
   }
   function handelEmailPassLogin(e) {
     e.preventDefault();
@@ -36,8 +36,7 @@ export default function LogIn() {
       })
       .catch(() => {
         toast.error("something went wrong");
-      })
-      .finally(() => setLoading(false));
+      });
   }
   return (
     <>
