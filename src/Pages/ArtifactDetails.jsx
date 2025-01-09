@@ -91,18 +91,17 @@ export default function ArtifactDetails() {
           <Lottie animationData={world} loop={true}></Lottie>
         </div>
         <div className="fixed overflow-y-auto w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
-          <Nav />
           {isError && (
             <h1 className="text-center text-2xl font-Roboto text-white">
               Data not found
             </h1>
           )}
           {isLoading ? (
-            <div className="max-w-[250px] mx-auto">
+            <div className="max-w-[250px] mx-auto mt-20">
               <Lottie animationData={loader} loop={true}></Lottie>
             </div>
           ) : (
-            <section className="min-h-screen">
+            <section className="min-h-screen mt-20">
               <h1 className="font-Cinzel text-3xl font-bold text-gray-200  text-center mt-6">
                 Artifacts Details
               </h1>

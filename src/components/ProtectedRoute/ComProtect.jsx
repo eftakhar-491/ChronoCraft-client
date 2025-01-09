@@ -21,9 +21,8 @@ export default function ComProtect({ children }) {
           <Lottie animationData={world} loop={true}></Lottie>
         </div>
         <div className="fixed overflow-y-auto  w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
-          <Nav />
           <div className="text-white">
-            <div className="max-w-[250px] mx-auto">
+            <div className="max-w-[250px] mt-20 mx-auto">
               <Lottie animationData={loader} loop={true}></Lottie>
             </div>
           </div>

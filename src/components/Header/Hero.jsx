@@ -29,7 +29,7 @@ export default function Hero() {
             <SwiperSlide className=" ">
               <div className="h-[600px] justify-between flex-col lg:flex-row flex gap-4 items-center lg:w-4/5 mx-auto w-11/12 ">
                 <div className=" lg:w-[51%] text-white">
-                  <h1 className="text-3xl lg:text-5xl font-Cinzel">
+                  <h1 className="text-3xl mt-20 lg:text-5xl font-Cinzel">
                     Timeless Treasures That Tell Their Story
                   </h1>
                   <p className="text-sm font-Roboto mt-3">

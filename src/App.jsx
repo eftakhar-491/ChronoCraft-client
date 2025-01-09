@@ -7,16 +7,20 @@ import StateContext from "./context/StateContext";
 import { HelmetProvider } from "react-helmet-async";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Nav from "./components/Header/Nav";
 const queryClient = new QueryClient();
 
 export default function App() {
   const [detailsId, setDetailsId] = useState("");
+
   return (
     <>
       <HelmetProvider>
         <QueryClientProvider client={queryClient}>
           <StateContext.Provider value={{ detailsId, setDetailsId }}>
             <AuthProvider>
+              <Nav />
+
               <Outlet />
               <ToastContainer />
             </AuthProvider>

@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
 import Footer from "../components/Footer/Footer";
 import { Helmet } from "react-helmet-async";
+import Background from "../components/Utilis/Background";
 
 export default function AllArtifacts() {
   const [z, setZ] = useState(true);
@@ -92,17 +93,9 @@ export default function AllArtifacts() {
       <Helmet>
         <title>All Artifacts</title>
       </Helmet>
-      <section
-        style={{ backgroundImage: ` url(${bg})` }}
-        className="fixed  h-screen w-full bg-cover bg-center bg-no-repeat"
-      >
-        <div className=" w-[600px] mx-auto absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <Lottie animationData={world} loop={true}></Lottie>
-        </div>
+      <Background>
         <div className="fixed overflow-y-auto w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
-          <Nav />
-
-          <section className="">
+          <section className="mt-20">
             <h1 className="text-4xl text-center font-Cinzel text-white mt-1">
               All Artifacts
             </h1>
@@ -303,7 +296,7 @@ export default function AllArtifacts() {
 
           <Footer />
         </div>
-      </section>
+      </Background>
     </>
   );
 }

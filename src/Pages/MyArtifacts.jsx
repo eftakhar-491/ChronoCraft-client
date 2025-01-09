@@ -45,16 +45,18 @@ export default function MyArtifacts() {
           <Lottie animationData={world} loop={true}></Lottie>
         </div>
         <div className="fixed overflow-y-auto  w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
-          <Nav />
+          {/* <Nav /> */}
           {isError && (
-            <h1 className="text-3xl font-Roboto text-white text-center py-10">
+            <h1 className="mt-20 text-3xl font-Roboto text-white text-center py-10">
               Data not found
             </h1>
           )}{" "}
           {isLoading || data.length === 0 ? (
             isLoading ? (
-              <div className="max-w-[250px] mx-auto">
-                <Lottie animationData={loader} loop={true}></Lottie>
+              <div className="backdrop-blur-lg mt-20 w-screen">
+                <div className="  max-w-[250px] min-h-screen mx-auto">
+                  <Lottie animationData={loader} loop={true}></Lottie>
+                </div>
               </div>
             ) : (
               <h1 className="text-2xl font-Roboto text-white text-center py-40">
@@ -62,7 +64,10 @@ export default function MyArtifacts() {
               </h1>
             )
           ) : (
-            <section className="min-h-screen w-11/12 mx-auto lg:w-4/5">
+            <section className="mt-20 min-h-screen w-11/12 mx-auto lg:w-4/5">
+              <h1 className="text-center mb-5 text-3xl font-Cinzel text-white">
+                My Artifacts
+              </h1>
               <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                   <thead className="text-xs text-white border-b-2 uppercase bg-transparent ">

@@ -1,16 +1,15 @@
 import React, { useContext } from "react";
-import world from "../assets/lottie/world.json";
-import bg from "../assets/bg.png";
+
 import Lottie from "lottie-react";
 import loader from "../assets/lottie/loader.json";
 
-import Nav from "../components/Header/Nav";
 import goo from "../assets/google.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
 import Footer from "../components/Footer/Footer";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
+import Background from "../components/Utilis/Background";
 export default function LogIn() {
   const navigate = useNavigate();
 
@@ -43,23 +42,16 @@ export default function LogIn() {
       <Helmet>
         <title>LogIn</title>
       </Helmet>
-      <section
-        style={{ backgroundImage: ` url(${bg})` }}
-        className="fixed  h-screen w-full bg-cover bg-center bg-no-repeat"
-      >
-        <div className=" w-[600px] mx-auto absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <Lottie animationData={world} loop={true}></Lottie>
-        </div>
+      <Background>
         <div className="fixed overflow-y-auto w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
-          <Nav />
           {loading ? (
-            <div className="max-w-[250px] mx-auto">
+            <div className="mt-20 max-w-[250px] mx-auto">
               <Lottie animationData={loader} loop={true}></Lottie>
             </div>
           ) : (
             <form
               onSubmit={handelEmailPassLogin}
-              className="shadow-2xl mt-14 border-2 p-4 rounded-lg w-11/12 md:max-w-md mx-auto text-white"
+              className="mt-20 shadow-2xl  border-2 p-4 rounded-lg w-11/12 md:max-w-md mx-auto text-white"
             >
               <label className="text-2xl font-Roboto font-bold">
                 Log In to ChronoCraft
@@ -141,7 +133,7 @@ export default function LogIn() {
           )}
           <Footer />
         </div>
-      </section>
+      </Background>
     </>
   );
 }

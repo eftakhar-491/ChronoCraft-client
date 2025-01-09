@@ -77,22 +77,21 @@ export default function LikedArtifact() {
           <Lottie animationData={world} loop={true}></Lottie>
         </div>
         <div className="fixed overflow-y-scroll w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
-          <Nav />
           {isError && (
             <h1 className="text-center text-2xl py-32 font-Roboto text-white">
               something went wrong! reload the page
             </h1>
           )}
           {isLoading ? (
-            <div className="max-w-[250px] mx-auto">
+            <div className="max-w-[250px] mx-auto mt-20">
               <Lottie animationData={loader} loop={true}></Lottie>
             </div>
           ) : data.length === 0 ? (
-            <h1 className="text-center text-2xl py-32 font-Roboto text-white">
+            <h1 className="mt-20 text-center text-2xl py-32 font-Roboto text-white">
               You Not like any artifacts!
             </h1>
           ) : (
-            <section className=" min-h-screen">
+            <section className=" min-h-screen mt-20">
               <h1 className="text-center text-3xl font-Cinzel text-white">
                 My Liked Artifacts
               </h1>

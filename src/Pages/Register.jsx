@@ -10,6 +10,7 @@ import { AuthContext } from "../Firebase/AuthProvider";
 import Footer from "../components/Footer/Footer";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
+import Background from "../components/Utilis/Background";
 export default function Register() {
   const navigate = useNavigate();
   const {
@@ -64,15 +65,8 @@ export default function Register() {
       <Helmet>
         <title>Register</title>
       </Helmet>
-      <section
-        style={{ backgroundImage: ` url(${bg})` }}
-        className="fixed  h-screen w-full bg-cover bg-center bg-no-repeat"
-      >
-        <div className=" w-[600px] mx-auto absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <Lottie animationData={world} loop={true}></Lottie>
-        </div>
+      <Background>
         <div className="fixed overflow-y-auto w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
-          <Nav />
           {loading ? (
             <div className="max-w-[250px] mx-auto">
               <Lottie animationData={loader} loop={true}></Lottie>
@@ -80,7 +74,7 @@ export default function Register() {
           ) : (
             <form
               onSubmit={handelEmailRegister}
-              className="shadow-2xl mt-8 border-2 p-4 rounded-lg w-11/12 md:max-w-md mx-auto text-white"
+              className="mt-20 shadow-2xl border-2 p-4 rounded-lg w-11/12 md:max-w-md mx-auto text-white"
             >
               <label className="text-2xl font-Roboto font-bold">
                 Create an account
@@ -192,7 +186,7 @@ export default function Register() {
           )}{" "}
           <Footer />
         </div>
-      </section>
+      </Background>
     </>
   );
 }

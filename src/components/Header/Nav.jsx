@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import profile from "../../assets/lottie/profile.json";
 import Lottie from "lottie-react";
 import { AuthContext } from "../../Firebase/AuthProvider";
@@ -10,6 +10,11 @@ export default function Nav() {
   const [menu, setMenu] = useState(false);
   const { user, logOut, setLoading } = useContext(AuthContext);
   const [tooltip, setTooltip] = useState(false);
+  const [navBg, setNavBg] = useState(false);
+  const { pathname } = useLocation();
+  useEffect(() => {
+    pathname === "/" ? setNavBg(true) : setNavBg(false);
+  }, [pathname]);
   const navigate = useNavigate();
   function handelLogout() {
     logOut()
@@ -23,14 +28,15 @@ export default function Nav() {
   }
   return (
     <>
-      <nav className="font-Cinzel text-white">
+      <nav
+        className={`${
+          navBg ? "bg-[#10191A]/80" : "bg-[#10191A]/20"
+        } font-Cinzel backdrop-blur-md fixed z-50 w-full left-0 top-0 text-white`}
+      >
         <div className="relative w-11/12 lg:w-4/5 mx-auto flex justify-between items-center py-4">
           {/* menu icon */}
 
-          <h1
-            onClick={() => navigate("/")}
-            className="cursor-pointer font-bold text-[14px] flex items-center gap-1 lg:text-2xl"
-          >
+          <h1 className="cursor-pointer font-bold text-[14px] flex items-center gap-1 lg:text-2xl">
             <span onClick={() => setMenu((p) => !p)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -47,8 +53,10 @@ export default function Nav() {
                 />
               </svg>
             </span>
-            Chrono
-            <span className="text-xl lg:text-3xl">Craft</span>
+            <span onClick={() => navigate("/")}>
+              Chrono
+              <span className="text-xl lg:text-3xl">Craft</span>
+            </span>
           </h1>
           <ul
             className={`${

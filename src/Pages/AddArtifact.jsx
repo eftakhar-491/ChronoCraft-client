@@ -57,10 +57,9 @@ export default function AddArtifact() {
           <Lottie animationData={world} loop={true}></Lottie>
         </div>
         <div className="fixed overflow-y-auto w-screen backdrop-blur-lg bg-[#3FAEBB]/5 h-screen">
-          <Nav />
           <form
             onSubmit={handelAddArtifact}
-            className="shadow-2xl mt-0 border-2 p-4 rounded-lg w-11/12 md:max-w-xl mx-auto text-white"
+            className="shadow-2xl mt-20 border-2 p-4 rounded-lg w-11/12 md:max-w-xl mx-auto text-white"
           >
             <label className="text-2xl font-Cinzel block  text-center font-bold">
               Add Artifact Info
