@@ -13,7 +13,7 @@ export default function Hero() {
   const navigate = useNavigate();
   return (
     <>
-      <section className="relative z-20">
+      <section className="relative z-20 ">
         <div>
           <Swiper
             slidesPerView={1}

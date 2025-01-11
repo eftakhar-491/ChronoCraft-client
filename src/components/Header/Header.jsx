@@ -18,7 +18,7 @@ export default function Header() {
         </div>
         <div className="backdrop-blur-lg   bg-[#3FAEBB]/5  h-screen">
           {/* <Nav /> */}
-          <div className="max-w-[1600px] mx-auto">
+          <div className="max-w-[1600px]  mx-auto">
             <Hero />
           </div>
         </div>

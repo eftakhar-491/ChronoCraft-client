@@ -54,11 +54,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/artifacts-details/:id",
-        element: (
-          <ComProtect>
-            <ArtifactDetails />
-          </ComProtect>
-        ),
+        element: <ArtifactDetails />,
       },
       {
         path: "/login",

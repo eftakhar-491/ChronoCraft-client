@@ -26,9 +26,7 @@ export default function ArtifactDetails() {
   } = useQuery({
     queryKey: ["artifactsDetails"],
     queryFn: async () => {
-      const res = await axiosSecure.get(
-        `/artifacts/details/${id}?email=${user?.email}`
-      );
+      const res = await axiosSecure.get(`/artifacts/details/${id}`);
       setLikeFn((p) => {
         return { count: res.data.like, isLiked: p.isLiked };
       });
@@ -67,6 +65,10 @@ export default function ArtifactDetails() {
     },
   });
   function handelLike() {
+    if (!user) {
+      toast("Please Login to like this artifact");
+      return;
+    }
     setLikeFn((p) => {
       return {
         count: p.isLiked ? p.count - 1 : p.count + 1,
