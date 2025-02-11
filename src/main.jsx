@@ -14,6 +14,7 @@ import ArtifactDetails from "./Pages/ArtifactDetails.jsx";
 import AuthProtect from "./components/ProtectedRoute/AuthProtect.jsx";
 import ComProtect from "./components/ProtectedRoute/ComProtect.jsx";
 import Error from "./Pages/Error.jsx";
+import Faqs from "./Pages/Faqs.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/artifacts",
         element: <AllArtifacts />,
+      },
+      {
+        path: "/faqs",
+        element: <Faqs />,
       },
       {
         path: "/add-artifact",

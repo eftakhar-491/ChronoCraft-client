@@ -61,7 +61,7 @@ export default function Nav() {
           <ul
             className={`${
               menu ? "block" : "hidden"
-            }  backdrop-blur-lg md:backdrop-blur-none bg-[#101A1Cf5] md:bg-transparent font-semibold absolute z-50 rounded-lg md:rounded-none md:top-0 top-14 border-2 md:border-0 p-3 md:p-0 md:relative md:flex md:space-x-5 text-sm`}
+            }  backdrop-blur-lg md:backdrop-blur-none bg-[#101A1Cf5] md:bg-transparent font-semibold absolute z-50 rounded-lg md:rounded-none md:top-0 top-14 border-2 md:border-0 p-3 text-[11px] md:p-0 md:relative md:flex md:space-x-5`}
           >
             <NavLink
               to="/"
@@ -71,6 +71,7 @@ export default function Nav() {
             >
               <li>Home</li>
             </NavLink>
+
             <NavLink
               to="/artifacts"
               className={({ isActive }) =>
@@ -79,14 +80,45 @@ export default function Nav() {
             >
               <li>All Artifacts</li>
             </NavLink>
+
+            {user && (
+              <NavLink
+                to="/my-artifacts"
+                className={({ isActive }) =>
+                  isActive ? "underline font-extrabold" : "text-gray-400"
+                }
+              >
+                <li>My Artifacts</li>
+              </NavLink>
+            )}
+            {user && (
+              <NavLink
+                to="/liked-artifacts"
+                className={({ isActive }) =>
+                  isActive ? "underline font-extrabold" : "text-gray-400"
+                }
+              >
+                <li>Liked Artifacts</li>
+              </NavLink>
+            )}
+            {user && (
+              <NavLink
+                to="/add-artifact"
+                state={{ his: "/add-artifact" }}
+                className={({ isActive }) =>
+                  isActive ? "underline font-extrabold" : "text-gray-400"
+                }
+              >
+                <li>Add Artifact</li>
+              </NavLink>
+            )}
             <NavLink
-              to="/add-artifact"
-              state={{ his: "/add-artifact" }}
+              to="/faqs"
               className={({ isActive }) =>
                 isActive ? "underline font-extrabold" : "text-gray-400"
               }
             >
-              <li>Add Artifact</li>
+              <li>FAQs</li>
             </NavLink>
           </ul>
           <div className="flex items-center gap-3">
