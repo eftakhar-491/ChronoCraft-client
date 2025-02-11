@@ -44,7 +44,7 @@ export default function Nav() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-6 md:hidden cursor-pointer rounded-full hover:scale-105 active:scale-95 p-[2px]"
+                className="size-6 lg:hidden cursor-pointer rounded-full hover:scale-105 active:scale-95 p-[2px]"
               >
                 <path
                   strokeLinecap="round"
@@ -55,13 +55,14 @@ export default function Nav() {
             </span>
             <span onClick={() => navigate("/")}>
               Chrono
-              <span className="text-xl lg:text-3xl">Craft</span>
+              <span className="text-xl lg:text-[20px]">Craft</span>
             </span>
           </h1>
+          {/* need re responsive change with css  */}
           <ul
             className={`${
               menu ? "block" : "hidden"
-            }  backdrop-blur-lg md:backdrop-blur-none bg-[#101A1Cf5] md:bg-transparent font-semibold absolute z-50 rounded-lg md:rounded-none md:top-0 top-14 border-2 md:border-0 p-3 text-[11px] md:p-0 md:relative md:flex md:space-x-5`}
+            }  backdrop-blur-lg lg:backdrop-blur-none bg-[#101A1Cf5] lg:bg-transparent font-semibold absolute z-50 rounded-lg lg:rounded-none lg:top-0 top-14 border-2 lg:border-0 p-3 text-[12px] lg:p-0 lg:relative lg:flex lg:space-x-3`}
           >
             <NavLink
               to="/"
@@ -125,7 +126,7 @@ export default function Nav() {
             {user ? (
               <button
                 onClick={handelLogout}
-                className="hidden md:block font-semibold border-2 px-3 py-1 rounded-lg "
+                className="hidden md:block text-sm font-semibold border-2 px-3 py-1 rounded-lg "
               >
                 Logout
               </button>

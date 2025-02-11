@@ -5,7 +5,8 @@ import Gallery from "../components/Gallery";
 import Reviews from "../components/Reviews";
 import Footer from "../components/Footer/Footer";
 import { Helmet } from "react-helmet-async";
-import Nav from "../components/Header/Nav";
+
+import UpcomingEvents from "../components/UpcomingEvents";
 export default function Home() {
   return (
     <>
@@ -13,10 +14,10 @@ export default function Home() {
         <title>Home</title>
       </Helmet>
       <div className="">
-        {/* <Nav /> */}
         <Header />
         <Featured />
         <Gallery />
+        <UpcomingEvents />
         <Reviews />
         <Footer />
       </div>
